@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 const App = () => {
   console.log('renders <App />');
@@ -65,7 +65,7 @@ const AddButton = ({ disabled, onClick }) => {
 const Total = ({ cartItems }) => {
   console.log('renders <Total />');
 
-  const total = () => {
+  const total = useMemo(() => {
     return cartItems.reduce(
       (acc, cur) => {
         const t = Date.now();
@@ -76,7 +76,8 @@ const Total = ({ cartItems }) => {
         return cur.length * 100 + acc;
       }, 0
     );
-  };
+    }, [cartItems]);
+    console.log(total);
 
   return <p>合計：{total}円</p>;
 };
