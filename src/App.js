@@ -68,11 +68,6 @@ const Total = memo(({ cartItems }) => {
   const total = useMemo(() => {
     return cartItems.reduce(
       (acc, cur) => {
-        const t = Date.now();
-        while (Date.now() - t < 100) {
-          // 擬似的に100msの遅延を発生させる
-        }
-
         return cur.length * 100 + acc;
       }, 0
     );
